@@ -62,7 +62,7 @@ The last comment block of each slide will be treated as slide notes. It will be 
 
 # Docker Conf Package contents
 
-```ruby copy
+```ruby
 .
 ├── backups       # created after starting ArchivesSpace to contain the database backups
 ├── config
@@ -107,9 +107,9 @@ The last comment block of each slide will be treated as slide notes. It will be 
 
 - Change to the extracted directory and run:
 
-    ```bash copy
+```bash
     docker compose up --detach​
-    ```
+```
 
 - Watch logs in Docker Desktop
 
@@ -130,7 +130,7 @@ The last comment block of each slide will be treated as slide notes. It will be 
 - Locales are exposed in the `locales` directory
 - Edit `locales/public/en.yml` for the english text
 
-    ```yaml copy
+```yaml
     en:
       brand:
         title: ArchivesSpace Public Interface
@@ -139,7 +139,7 @@ The last comment block of each slide will be treated as slide notes. It will be 
         welcome_message: |
           <p>Search across our collections, digital materials, and more.</p>
         welcome_page_title: ArchivesSpace Public Interface
-    ```
+```
 
 - Restart `archivesspace` container on Docker Desktop
 
@@ -151,10 +151,10 @@ The last comment block of each slide will be treated as slide notes. It will be 
 
 - Update config variables in `config/config.rb`
 
-    ```ruby copy
+```ruby
     AppConfig[:pui_branding_img] = 'https://creativecommons.org/wp-content/uploads/2019/02/ccheart_black.svg_.zip'
     AppConfig[:frontend_branding_img] = 'https://creativecommons.org/wp-content/uploads/2019/02/ccheart_red.svg_.zip'
-    ```
+```
 
 - See also https://docs.archivesspace.org/customization/theming/
 
@@ -169,10 +169,10 @@ The last comment block of each slide will be treated as slide notes. It will be 
 
 - Update config variables in `config/config.rb`
 
-    ```ruby copy
+```ruby
     AppConfig[:pui_branding_img] = '/assets/images/custom-logo.svg'
     AppConfig[:frontend_branding_img] = '/assets/images/custom-logo-staff.svg'
-    ```
+```
 - Add your `custom-logo.svg` file in `plugins/local/public/assets/images`
 - Add your `custom-logo-staff.svg` file in `plugins/local/frontend/assets/images`
 - Files can also be in the `png` format - update filenames accordingly
@@ -211,10 +211,10 @@ The last comment block of each slide will be treated as slide notes. It will be 
 - Run commands on the container:
   - Docker Desktop -> archivesspace container -> Exec tab
 
-    ```bash copy
+```bash
     $ cd archivesspace
     $ ./scripts/initialize-plugin.sh digitization_work_order
-    ```
+```
 ---
 
 # Content Warnings Plugin​
@@ -224,10 +224,10 @@ The last comment block of each slide will be treated as slide notes. It will be 
 
 - Run commands on the container:
   - Docker Desktop -> archivesspace container -> Exec tab
-      ```bash copy
+```bash
       $ cd archivesspace/​
       $ ./scripts/setup-database.sh​
-      ```
+```
 
 - Add translations for new Controlled List value​
   - Locale files are in the `locales` directrory on the host system
@@ -238,9 +238,9 @@ The last comment block of each slide will be treated as slide notes. It will be 
 
 - Backup in mysql container -> exec​ tab
 
-    ```bash copy
+```bash
     mysqldump -u root -p123456 archivesspace | gzip > /tmp/db.$(date +%F.%H%M%S).sql.gz​
-    ```
+```
 
 - Download the file in the Files tab of the mysql container​
 - Manipulate a resource record:
@@ -248,9 +248,9 @@ The last comment block of each slide will be treated as slide notes. It will be 
 
 - Restore: mysql container -> exec​ tab
 
-    ```bash copy
+```bash
     gunzip -c /tmp/db.2026-02-17.155254.sql.gz | mysql -uas -pas123 archivesspace​
-    ```
+```
 
 <!--
 - Backup:
@@ -277,11 +277,12 @@ The last comment block of each slide will be treated as slide notes. It will be 
 # Solr administration​
 - Reindex​
 
-  ```bash copy
+```bash
   docker compose down solr app​
   docker volume rm archivesspace_app-data archivesspace_solr-data​
   docker compose up –d​
-  ```
+```
+
 - Solr Admin interface​
   - http://localhost:8983/solr/#/
 
@@ -368,24 +369,17 @@ The last comment block of each slide will be treated as slide notes. It will be 
   - Method: `POST`
   - URL: `{{baseUrl}}/agents/families`
   - Body (raw)
-    ```json copy
+```json
     {
       "jsonmodel_type": "agent_family",
       "dates_of_existence": [...
-    ```
+```
 
 ---
 
 # Thank you
 
   - ArchivesSpaceHome@lyrasis.org
-    - https://docs.archivesspace.org/
+  - https://docs.archivesspace.org/
 
 
-<style>
-/* Indent h1 on all slides except the first (which has text-center) */
-.slidev-layout:not(.text-center) h1 {
-  padding-left: 3.5rem;
-}
-</style>
-    

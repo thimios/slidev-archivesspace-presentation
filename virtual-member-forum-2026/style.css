@@ -1,9 +1,0 @@
-/* Indent h1 on all slides except the first (which has text-center) */
-.slidev-layout:not(.text-center) h1 {
-  padding-left: 3.5rem;
-}
-
-/* Make copy button permanently visible */
-.slidev-code-copy {
-  opacity: 1 !important;
-}
